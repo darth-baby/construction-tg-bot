@@ -1,30 +1,16 @@
-import asyncio
-import logging
-import sys
-import os
-from dotenv import load_dotenv
-from aiogram import Bot, Dispatcher, html
-from aiogram.client.default import DefaultBotProperties
-from aiogram.enums import ParseMode
-from aiogram.filters import CommandStart
-from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
+from aiogram.utils.keyboard import InlineKeyboardBuilder
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from handlers import common, user_settings
+def get_menu_inline_keyboard() -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
 
-load_dotenv()
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+    builder.button(text="Выбрать спецтехнику 🚜", callback_data="menu_tech")
+    builder.button(text="Управление подписками 📖", callback_data="menu_sub_manage")
+    builder.button(text="Выбрать регион 🗺️", callback_data="menu_region")
+    builder.button(text="Радиус получения объявлений 📍", callback_data="menu_radius")
+    builder.button(text="Написать нам ✏️", callback_data="menu_contact")
+    builder.button(text="Помощь ℹ️", callback_data="menu_help")
 
-dp = Dispatcher()
-dp.include_router(common.router)
+    builder.adjust(1) 
 
-async def main() -> None:
-    if BOT_TOKEN is None:
-        logging.error("BOT_TOKEN is not found. Check your .env file.")
-        sys.exit(1)
-    bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
-    await dp.start_polling(bot)
-
-
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, stream=sys.stdout)
-    asyncio.run(main())
+    return builder.as_markup()
