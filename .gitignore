@@ -1,0 +1,23 @@
+# Виртуальное окружение
+/venv
+/env
+/.venv
+/__pycache__/
+*.pyc
+
+# Файлы с секретами и переменными окружения
+.env
+.env.*
+*.env
+
+# Файлы IDE (Visual Studio Code, PyCharm)
+.vscode/
+.idea/
+
+# Логи и временные файлы
+*.log
+*.tmp
+
+# Файлы операционной системы
+.DS_Store
+Thumbs.db
