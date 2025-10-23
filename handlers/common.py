@@ -1,5 +1,5 @@
 from aiogram import Router, F
-from aiogram.filters import CommandStart, or_f
+from aiogram.filters import CommandStart
 from aiogram.types import Message
 from keyboards.inline_keyboards import get_menu_inline_keyboard
 from keyboards.reply_keyboards import get_main_menu_reply_keyboard
