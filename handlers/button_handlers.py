@@ -25,7 +25,19 @@ async def handle_back_to_menu(callback: CallbackQuery):
     """
     if callback.message:
         await callback.message.edit_text(
-            "Вы вернулись в главное меню",
+            "Вы вернулись в главное меню 🎯",
             reply_markup=get_menu_inline_keyboard(),
         )
     await callback.answer()
+
+
+@router.callback_query(F.data == "menu_help")
+async def handle_help_button(callback: CallbackQuery):
+    """
+    Обрабатывает нажатие на кнопку "Помощь"
+    """
+    if callback.message:
+        await callback.message.edit_text(
+            """Привет! Я бот Строитель! 🚜\n
+Здесь вы сможете получать заказы на спецтехнику по подписке. Бот работает по Москве и МО."""
+        )

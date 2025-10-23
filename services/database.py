@@ -14,6 +14,57 @@ class Database:
             logging.error(f"Ошибка подключения к БД: {e}")
             raise
 
+    def get_user_active_subscriptions(self, user_id: int) -> list:
+        """
+        Возвращает список активных подписок пользователя.
+        Каждый элемент - кортеж (название категории, callback_data).
+        """
+        try:
+            self.cursor.execute(
+                """
+                SELECT tc.name, tc.callback_data
+                FROM subscriptions s
+                JOIN tech_categories tc ON s.category_id = tc.category_id
+                WHERE s.user_id = ? AND s.is_active = 1
+            """,
+                (user_id,),
+            )
+            return self.cursor.fetchall()
+        except sqlite3.Error as e:
+            logging.error(f"Ошибка получения подписок для user_id={user_id}: {e}")
+            return []
+
+    def remove_subscription(self, user_id: int, category_callback: str) -> bool:
+        """
+        Удаляет подписку пользователя на конкретную категорию.
+        """
+        try:
+            with self.connection:
+                # Сначала найдем category_id по callback_data
+                category_id_result = self.cursor.execute(
+                    "SELECT category_id FROM tech_categories WHERE callback_data = ?",
+                    (category_callback,),
+                ).fetchone()
+
+                if not category_id_result:
+                    logging.warning(
+                        f"Попытка удалить несуществующую категорию: {category_callback}"
+                    )
+                    return False
+
+                category_id = category_id_result[0]
+
+                # Удаляем запись из таблицы подписок
+                self.cursor.execute(
+                    "DELETE FROM subscriptions WHERE user_id = ? AND category_id = ?",
+                    (user_id, category_id),
+                )
+                # rowcount > 0 означает, что строка была найдена и удалена
+                return self.cursor.rowcount > 0
+        except sqlite3.Error as e:
+            logging.error(f"Ошибка удаления подписки для user_id={user_id}: {e}")
+            return False
+
     def setup(self):
         """Создает таблицы, если они не существуют."""
         with self.connection:

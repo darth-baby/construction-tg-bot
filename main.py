@@ -20,6 +20,7 @@ dp = Dispatcher()
 dp.include_router(common.router)
 dp.include_router(button_handlers.router)
 dp.include_router(tech_selection.router)
+dp.include_router(subscription_settings.router)
 
 
 async def main() -> None:
