@@ -14,6 +14,30 @@ class Database:
             logging.error(f"Ошибка подключения к БД: {e}")
             raise
 
+    def get_subscribers_for_category(self, category_callback: str) -> list[int]:
+        """
+        Возвращает список user_id всех пользователей, подписанных
+        на указанную категорию техники.
+        """
+        try:
+            self.cursor.execute(
+                """
+                SELECT s.user_id
+                FROM subscriptions s
+                JOIN tech_categories tc ON s.category_id = tc.category_id
+                WHERE tc.callback_data = ? AND s.is_active = 1
+            """,
+                (category_callback,),
+            )
+            # fetchall() вернет список кортежей [(123,), (456,)],
+            # поэтому мы распаковываем их в простой список [123, 456]
+            return [row[0] for row in self.cursor.fetchall()]
+        except sqlite3.Error as e:
+            logging.error(
+                f"Ошибка получения подписчиков для категории {category_callback}: {e}"
+            )
+            return []
+
     def get_user_active_subscriptions(self, user_id: int) -> list:
         """
         Возвращает список активных подписок пользователя.

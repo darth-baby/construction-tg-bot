@@ -1,0 +1,109 @@
+# Фронтальный погрузчик
+__label__tech:front_loader Фронтальный погрузчик нужен на стройку
+__label__tech:front_loader Фронтальный погрузчик с ковшом 1 м
+__label__tech:front_loader Фронтальный погрузчик аренда срочно
+
+# Экскаватор-погрузчик
+__label__tech:loader_excavator Экскаватор погрузчик ЭП с гидромолотом
+__label__tech:loader_excavator Экскаватор погрузчик jcb 3cx аренда
+__label__tech:loader_excavator ЭП для земляных работ
+
+# Экскаватор гусеничный
+__label__tech:crawler_excavator Экскаватор гусеничный для котлована
+__label__tech:crawler_excavator Гусянка аренда срочно
+__label__tech:crawler_excavator ЭГ с ковшом 1,5 м
+
+# Экскаватор колесный
+__label__tech:wheeled_excavator Экскаватор колесный аренда
+__label__tech:wheeled_excavator Колесник для планировки участка
+__label__tech:wheeled_excavator ЭК с гидромолотом
+
+# Автокран
+__label__tech:truck_crane А/К 25 тонн нужен
+__label__tech:truck_crane Автокран с оператором на день
+__label__tech:truck_crane Кран аренда Зеленоград
+
+# Автовышка
+__label__tech:aerial_platform Автовышка 30 м на монтаж
+__label__tech:aerial_platform Вышка для ремонта фасада
+__label__tech:aerial_platform А/В аренда на сутки
+
+# Автогрейдер
+__label__tech:autograder Автогрейдер планировка дороги
+__label__tech:autograder Грейдер нужен на стройку
+__label__tech:autograder Автогрейдер с оператором
+
+# Бетоновоз
+__label__tech:concrete_mixer_truck Бетоновоз КамАЗ 8 м3
+__label__tech:concrete_mixer_truck Миксер с бетоном аренда
+__label__tech:concrete_mixer_truck Цементовоз на объект
+
+# Бульдозер
+__label__tech:bulldozer Бульдозер для котлована
+__label__tech:bulldozer Бульд аренда
+__label__tech:bulldozer Dozer с ковшом 3 м3
+
+# Каток
+__label__tech:road_roller Каток для уплотнения грунта
+__label__tech:road_roller Виброкаток аренда
+__label__tech:road_roller Асфальтокаток на стройку
+
+# Контейнер (ПУХТО)
+__label__tech:container_pukhto Контейнер ПУХТО на стройку
+__label__tech:container_pukhto Пухто аренда
+__label__tech:container_pukhto Бункер для мусора
+
+# Манипулятор
+__label__tech:manipulator Манипулятор с бортом
+__label__tech:manipulator Манип аренда
+__label__tech:manipulator Требуется манипулятор на день
+
+# Мини-погрузчик
+__label__tech:mini_loader Мини-погрузчик аренда
+__label__tech:mini_loader Bobcat с ковшом 0,5 м3
+__label__tech:mini_loader Минипогрузчик для стройки
+
+# Мини-экскаватор
+__label__tech:mini_excavator Мини-экскаватор для копки
+__label__tech:mini_excavator Миниэкскаватор аренда
+__label__tech:mini_excavator Мини-экскаватор с гидромолотом
+
+# Поливомоечная техника
+__label__tech:watering_communal Поливомоечная машина нужна завтра
+__label__tech:watering_communal Полиаомоечная срочно
+__label__tech:watering_communal Коммунальная поливалка на объект
+
+# Самосвал
+__label__tech:dump_truck Самосвал КамАЗ 20 тонн
+__label__tech:dump_truck Сдам в аренду самосвал
+__label__tech:dump_truck МАЗ самосвал нужен
+
+# Тонар
+__label__tech:tonar Тонар прицеп аренда
+__label__tech:tonar Полуприцеп Тонар нужен
+__label__tech:tonar Тонар на стройку
+
+# Трактор
+__label__tech:tractor Трактор МТЗ аренда
+__label__tech:tractor Беларус трактор нужен
+__label__tech:tractor Трактор на работу с прицепом
+
+# Трал
+__label__tech:trawl Трал низкорамный аренда
+__label__tech:trawl Низкорамник нужен
+__label__tech:trawl Трал для перевозки техники
+
+# Шаланда (длинномер)
+__label__tech:flatbed_truck Шаланда длинномер аренда
+__label__tech:flatbed_truck Фура длинномер нужна
+__label__tech:flatbed_truck Длинномер для стройки
+
+# Эвакуатор
+__label__tech:tow_truck Эвакуатор срочно
+__label__tech:tow_truck Эвак нужен на месте
+__label__tech:tow_truck Эвакуатор с водителем
+
+# Ямобур
+__label__tech:auger_drill Ямобур аренда
+__label__tech:auger_drill Бурильная установка нужна
+__label__tech:auger_drill Бур для копки
