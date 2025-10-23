@@ -7,7 +7,13 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiohttp import web
-from handlers import common, button_handlers, subscription_settings, tech_selection
+from handlers import (
+    common,
+    button_handlers,
+    subscription_settings,
+    tech_selection,
+    feedback,
+)
 from handlers.incoming_webhook import router as webhook_router
 from services.database import db
 from keyboards.buttons_data import TECH_BUTTONS_DATA
@@ -21,6 +27,7 @@ dp.include_router(common.router)
 dp.include_router(button_handlers.router)
 dp.include_router(tech_selection.router)
 dp.include_router(subscription_settings.router)
+dp.include_router(feedback.router)
 
 
 async def main() -> None:

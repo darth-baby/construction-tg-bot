@@ -30,16 +30,7 @@ async def command_go_to_menu_handler(message: Message) -> None:
     Кнопки:
 ⏺️Выбрать спецтехнику - Выбор спецтехники, на которую необходимо получать заказы
 ⏺️Управление подписками - Информация по текущим подпискам
-⏺️Радиус получения объявлений - Настройка для получения заявок только в нужном вам районе
 ⏺️Написать нам - Обращение в поддержку, если у вас возникли вопросы 
 ⏺️Помощь - Информация по работе бота и стоимости подписки"""
 
     await message.answer(start_text, reply_markup=inline_kb)
-
-
-@router.message()
-async def echo_handler(message: Message) -> None:
-    try:
-        await message.answer("Введите команду /start если потерялись.")
-    except TypeError:
-        await message.answer("Введите команду /start если потерялись.")
