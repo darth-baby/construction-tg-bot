@@ -62,8 +62,8 @@ async def handle_webhook(request: web.Request):
         message_text = data.get("wa_body", "")
         author = data.get("wa_author", "Неизвестно")
 
-        # --- 1️⃣ Определяем категорию ---
-        category_callback = detect_category(message_text)
+        text_for_model = message_text.replace('\n', ' ')
+        category_callback = detect_category(text_for_model)
         if not category_callback:
             logging.info("⚠️ Категория не определена — сообщение пропущено.")
             return web.json_response(
