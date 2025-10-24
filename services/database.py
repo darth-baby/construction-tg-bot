@@ -1,15 +1,16 @@
-# Файл: services/database.py
 import sqlite3
 import logging
+from utils import resource_path
 
 
 class Database:
-    def __init__(self, db_file="bot_database.db"):
-        """Инициализация соединения с БД."""
+    # Изменяем __init__, чтобы он принимал полный путь к файлу
+    def __init__(self, db_path: str):
+        """Инициализация соединения с БД по полному пути."""
         try:
-            self.connection = sqlite3.connect(db_file)
+            self.connection = sqlite3.connect(db_path)
             self.cursor = self.connection.cursor()
-            logging.info(f"Успешное подключение к базе данных: {db_file}")
+            logging.info(f"Успешное подключение к базе данных: {db_path}")
         except sqlite3.Error as e:
             logging.error(f"Ошибка подключения к БД: {e}")
             raise
@@ -171,5 +172,5 @@ class Database:
             return False
 
 
-# Создаем единый экземпляр класса для всего приложения
-db = Database()
+db_file_path = resource_path("bot_database.db")
+db = Database(db_path=db_file_path)

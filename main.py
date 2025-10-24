@@ -17,6 +17,7 @@ from handlers import (
 from handlers.incoming_webhook import router as webhook_router
 from services.database import db
 from keyboards.buttons_data import TECH_BUTTONS_DATA
+from utils import resource_path
 
 
 load_dotenv()
@@ -63,5 +64,16 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, stream=sys.stdout)
-    asyncio.run(main())
+    # --- Загружаем переменные окружения ПРАВИЛЬНЫМ СПОСОБОМ ---
+    dotenv_path = resource_path(".env")
+    if not os.path.exists(dotenv_path):
+        print("ОШИБКА: Файл .env не найден! Пожалуйста, создайте его.")
+        exit()
+    load_dotenv(dotenv_path=dotenv_path)
+    # --- Конец блока загрузки .env ---
+
+    # ... остальной код запуска бота ...
+    try:
+        asyncio.run(main())
+    except (KeyboardInterrupt, SystemExit):
+        logging.info("Бот остановлен.")

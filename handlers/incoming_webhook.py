@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 from services.database import db
 from keyboards.buttons_data import TECH_BUTTONS_DATA
 from services.hybrid_category_detector import detect_category
+import datetime
+from aiogram.utils.markdown import hbold, hitalic
 
 router = web.RouteTableDef()
 
@@ -83,10 +85,20 @@ async def handle_webhook(request: web.Request):
             "Спецтехника",
         )
 
+        tstamp = data.get("timestamp")
+        if tstamp:
+            dt_str = datetime.datetime.fromtimestamp(tstamp).strftime(
+                "%d.%m.%Y в %H:%M"
+            )
+        else:
+            dt_str = "не указано"
+
         message_text_formatted = (
-            f"📢 **Новое объявление по подписке «{tech_name}»**\n\n"
-            f"👤 **Номер:** {author}\n"
-            f"📝 **Текст:**\n{message_text}"
+            f"📢 {hbold(f'Новое объявление по подписке «{tech_name}»')}\n\n"
+            f"👤 {hbold('Номер:')} {author}\n"
+            f"📝 {hbold('Текст:')}\n{message_text}\n\n"  # Добавили отступы
+            f"🕓 {hbold('Время:')} {dt_str}\n\n"
+            f"❗️ {hitalic('Чем больше времени прошло с момента появления объявления, тем больше вероятность, что оно уже не актуально.')}"
         )
 
         # --- 3️⃣ Рассылаем подписчикам ---

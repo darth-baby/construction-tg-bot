@@ -2,6 +2,9 @@ import re
 from fuzzywuzzy import fuzz
 import fasttext
 import os
+from utils import resource_path
+import logging  # Хорошая практика - добавить логирование
+
 
 TECH_BUTTONS_DATA = [
     ("Автовышка", "tech:aerial_platform"),
@@ -68,9 +71,21 @@ _model = None
 
 
 def load_model():
+    """Загружает модель fastText, если она еще не загружена."""
     global _model
-    if _model is None and os.path.exists(MODEL_PATH):
-        _model = fasttext.load_model(MODEL_PATH)
+    if _model is None:
+        # --- ИСПОЛЬЗУЕМ НОВЫЙ ПОДХОД ---
+        model_path = resource_path("services/tech_category.bin")
+        if os.path.exists(model_path):
+            try:
+                _model = fasttext.load_model(model_path)
+                logging.info(f"Модель fastText успешно загружена из {model_path}")
+            except Exception as e:
+                logging.error(f"Не удалось загрузить модель fastText: {e}")
+        else:
+            logging.warning(
+                f"Файл модели 'tech_category.bin' не найден по пути {model_path}. ML-детектор будет отключен."
+            )
     return _model
 
 
@@ -97,6 +112,10 @@ def detect_category(text: str):
 
 # --- Тренировка модели (разово) ---
 def train_model(dataset_path="train.txt"):
+    # Для функции обучения тоже используем resource_path, чтобы она сохраняла модель рядом с .exe
+    model_save_path = resource_path("tech_category.bin")
+
+    # ... остальная логика обучения ...
     model = fasttext.train_supervised(
         input=dataset_path,
         lr=0.5,
@@ -104,5 +123,5 @@ def train_model(dataset_path="train.txt"):
         wordNgrams=2,
         dim=100,
     )
-    model.save_model(MODEL_PATH)
-    print(f"✅ Модель обучена и сохранена в {MODEL_PATH}")
+    model.save_model(model_save_path)
+    print(f"✅ Модель обучена и сохранена в {model_save_path}")
