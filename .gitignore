@@ -10,8 +10,7 @@
 .env
 .env.*
 *.env
-.db
-
+*.db
 # Файлы IDE (Visual Studio Code, PyCharm)
 .vscode/
 .idea/
